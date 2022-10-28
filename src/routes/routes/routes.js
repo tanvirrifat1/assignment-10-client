@@ -30,15 +30,15 @@ export const router = createBrowserRouter([
             }, {
                 path: "/courses",
                 element: <Courses></Courses>,
-                loader: () => fetch('https://learn-web-assignment-server.vercel.app/courses')
+                loader: () => fetch('http://localhost:5000/subject-categories')
             }, {
                 path: "/courses/:id",
                 element: <FullCourseDetails></FullCourseDetails>,
-                loader: ({ params }) => fetch(`https://learn-web-assignment-server.vercel.app/courses/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/subject-categories/${params.id}`)
             }, {
                 path: "/checkout/:id",
                 element: <PrivateRoutes><CheckOut></CheckOut></PrivateRoutes>,
-                loader: ({ params }) => fetch(`https://learn-web-assignment-server.vercel.app/courses/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/subject-categories/${params.id}`)
             }, {
                 path: "/blog",
                 element: <Blog></Blog>
