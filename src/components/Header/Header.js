@@ -1,21 +1,42 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FaCode } from "react-icons/fa"
+import { useContext } from 'react';
+import { DarkModeContext } from '../../Context/DarkContext';
+import { AuthContext } from '../../Context/UserContext';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import './Header.css'
+
+
+
 
 const Header = () => {
+    const nav = useNavigate();
+    const { user, logOut } = useContext(AuthContext)
+    const [setDark, dark] = useContext(DarkModeContext);
+
+    const handleDark = () => {
+        setDark(!dark);
+    }
+
+    const handleSignOut = () => {
+        logOut()
+            .then(result => {
+                toast.success("User Signed Out SuccessFully")
+                nav("/");
+
+            })
+    }
+
+
+
     return (
         <div>
-            <div className='m-10'>
-                <div className="navbar bg-neutral text-neutral-content justify-between rounded-lg">
-                    <Link to='/' className="btn btn-ghost normal-case text-xl text-3xl font-bold hover:text-lime-300 hover:text-4xl">Home</Link>
-                    <div className='mr-6'>
-                        <Link className='m-4 text-slate-300 font-bold hover:text-cyan-600' to='/'>Home</Link>
-                        <Link className='m-4 text-slate-300 font-bold hover:text-cyan-600' to='/courses'>Courses</Link>
-                        <Link className='m-4 text-slate-300 font-bold hover:text-cyan-600' to='/faq'>FAQ</Link>
-                        <Link className='m-4 text-slate-300 font-bold hover:text-cyan-600' to='/about'>About</Link>
-                    </div>
-                </div>
 
-            </div>
+
+
+
         </div>
     );
 };
